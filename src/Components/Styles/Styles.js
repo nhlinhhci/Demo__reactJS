@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//Cách 1: import đường dẫn css từ file component
+//Cách 1: import đường dẫn css từ file component - Dùng khi cần css tĩnh làm giao diện ban đầu
 // import "./styles.css";
 //Cách 2: import css tại component
 import style from "./styles.module.css";
@@ -19,6 +19,7 @@ export default class Styles extends Component {
 
           <section
             style={{
+              //Cách 3
               backgroundColor: "black",
               color: "green",
             }}
