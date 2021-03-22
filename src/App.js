@@ -16,6 +16,7 @@ import BaiTapLayoutMap from "./RenderWithMap/BaiTapLayoutMap";
 import DanhSachSanPhamProps from "./Props/DemoProps/DanhSachSanPhamProps";
 import Products from "./BaiTapProps/Products";
 import Glasses from "./BaiTapThuKinhState/Glasses";
+import BaiTapGioHangRedux from "./BTGioHangRedux/BaiTapGioHangRedux";
 
 function App() {
   return (
@@ -32,8 +33,9 @@ function App() {
       {/* <RenderWithMap /> */}
       {/* <BaiTapLayoutMap /> */}
       {/* <DanhSachSanPhamProps /> */}
-      <Products />
-      {/* <Glasses /> */}
+      {/* <Products /> */}
+      <Glasses />
+      {/* <BaiTapGioHangRedux /> */}
     </div>
   );
 }

@@ -11,23 +11,24 @@ export default class Carts extends Component {
           <td>
             <img src={item.hinhAnh} alt={item.tenSP} width="50" />
           </td>
-          <td>{item.gia}</td>
+          {/* toLocaleString() để hiển thị số có , ngăn cách triệu-nghìn-đơn vị đẹp hơn */}
+          <td>{item.gia.toLocaleString()}</td>
           <td>
             <button
               class="btn fas fa-minus-circle"
               onClick={() => {
-                this.props.giamSoLuong(item);
+                this.props.tangGiamSoLuong(item, -1);
               }}
             ></button>
-            {item.soLuong}
+            {item.soLuong.toLocaleString()}
             <button
               class="btn fas fa-plus-circle"
               onClick={() => {
-                this.props.tangSoLuong(item);
+                this.props.tangGiamSoLuong(item, 1);
               }}
             ></button>
           </td>
-          <td>{item.gia * item.soLuong}</td>
+          <td>{(item.gia * item.soLuong).toLocaleString()}</td>
           <td>
             <button
               className="btn btn-danger"

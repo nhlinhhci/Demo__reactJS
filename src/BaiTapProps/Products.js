@@ -137,26 +137,45 @@ export default class Products extends Component {
       gioHang: gioHangCapNhat,
     });
   };
-  giamSoLuong = (spClick) => {
-    // console.log("Giam so luong", spClick.maSP);
+  // giamSoLuong = (spClick) => {
+  //   // console.log("Giam so luong", spClick.maSP);
+  //   let gioHangCapNhat = [...this.state.gioHang];
+  //   let index = gioHangCapNhat.findIndex((item) => item.maSP === spClick.maSP);
+  //   if (index !== -1) {
+  //     gioHangCapNhat[index].soLuong -= 1;
+  //     if (gioHangCapNhat[index].soLuong === 0) {
+  //       gioHangCapNhat.splice(index, 1);
+  //     }
+  //   }
+  //   this.setState({
+  //     gioHang: gioHangCapNhat,
+  //   });
+  // };
+  // tangSoLuong = (spClick) => {
+  //   // console.log("Tang so luong", spClick.maSP);
+  //   let gioHangCapNhat = [...this.state.gioHang];
+  //   let index = gioHangCapNhat.findIndex((item) => item.maSP === spClick.maSP);
+  //   if (index !== -1) {
+  //     gioHangCapNhat[index].soLuong += 1;
+  //   }
+  //   this.setState({
+  //     gioHang: gioHangCapNhat,
+  //   });
+  // };
+  tangGiamSoLuong = (spClick, soLuong) => {
+    //soLuong = 1 thì tăng, = -1 thì giảm
+    // console.log(maSP, soLuong);
     let gioHangCapNhat = [...this.state.gioHang];
     let index = gioHangCapNhat.findIndex((item) => item.maSP === spClick.maSP);
-    if (index !== -1) {
-      gioHangCapNhat[index].soLuong -= 1;
-      if (gioHangCapNhat[index].soLuong === 0) {
-        gioHangCapNhat.splice(index, 1);
-      }
-    }
-    this.setState({
-      gioHang: gioHangCapNhat,
-    });
-  };
-  tangSoLuong = (spClick) => {
-    // console.log("Tang so luong", spClick.maSP);
-    let gioHangCapNhat = [...this.state.gioHang];
-    let index = gioHangCapNhat.findIndex((item) => item.maSP === spClick.maSP);
-    if (index !== -1) {
+    if (soLuong === 1) {
       gioHangCapNhat[index].soLuong += 1;
+    } else {
+      gioHangCapNhat[index].soLuong -= 1;
+    }
+    if (gioHangCapNhat[index].soLuong < 1) {
+      //Để xác định khi bấm nút - không quá 0
+      alert("số lượng tối thiểu là 1");
+      gioHangCapNhat[index].soLuong -= soLuong;
     }
     this.setState({
       gioHang: gioHangCapNhat,
@@ -182,8 +201,9 @@ export default class Products extends Component {
           <Carts
             gioHang={this.state.gioHang}
             xoaGioHang={this.xoaGioHang}
-            tangSoLuong={this.tangSoLuong}
-            giamSoLuong={this.giamSoLuong}
+            // tangSoLuong={this.tangSoLuong}
+            // giamSoLuong={this.giamSoLuong}
+            tangGiamSoLuong={this.tangGiamSoLuong}
           />
         </div>
         <h3 className="text-center display-4">Danh sách sản phẩm</h3>
