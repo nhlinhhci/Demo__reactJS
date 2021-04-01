@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class SanPhamRedux extends Component {
+class SanPhamRedux extends Component {
   render() {
+    console.log("prop", this.props);
     let product = this.props.sanPham;
     return (
       <div>
@@ -37,3 +39,30 @@ export default class SanPhamRedux extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  //=> dispatch giống như phương thức setState tribg reactClass component
+  return {
+    themGioHang: (spClick) => {
+      // console.log("spClick", spClick);
+      // từ spClick tạo ra sp giỏ hàng
+      const spGioHang = {
+        maSP: spClick.maSP,
+        tenSP: spClick.tenSP,
+        gia: spClick.giaBan,
+        soLuong: 1,
+        hinhAnh: spClick.hinhAnh,
+      };
+      //Đóng gói dữ liệu gửi lên store
+      const action = {
+        type: "THEM_GIO_HANG", //đây là thuộc tính băt buộc để reducer nhận biết giá trị
+        spGioHang: spGioHang,
+      };
+      // gửi action lên reducer
+      dispatch(action);
+    },
+  };
+};
+
+//Két nối component với store
+export default connect(null, mapDispatchToProps)(SanPhamRedux);

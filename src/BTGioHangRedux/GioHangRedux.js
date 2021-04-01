@@ -14,10 +14,35 @@ class GioHangRedux extends Component {
             <img src={spGH.hinhAnh} alt="" width="50" />
           </td>
           <td>{spGH.gia}</td>
-          <td>{spGH.soLuong}</td>
+          <td>
+            <button
+              className="btn btn-primary mr-2"
+              onClick={() => {
+                this.props.tangGiamSoLuong(spGH.maSP, -1);
+              }}
+            >
+              -
+            </button>
+            {spGH.soLuong}
+            <button
+              className="btn btn-primary ml-2"
+              onClick={() => {
+                this.props.tangGiamSoLuong(spGH.maSP, 1);
+              }}
+            >
+              +
+            </button>
+          </td>
           <td>{spGH.gia * spGH.soLuong}</td>
           <td>
-            <button className="btn btn-danger">Xóa</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                this.props.xoaGioHang(spGH.maSP);
+              }}
+            >
+              Xóa
+            </button>
           </td>
         </tr>
       );
@@ -56,5 +81,26 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    xoaGioHang: (maSP) => {
+      const action = {
+        type: "XOA_GIO_HANG",
+        maSP: maSP,
+      };
+      dispatch(action);
+    },
+    tangGiamSoLuong: (maSP, soLuong) => {
+      // console.log(maSP, soLuong);
+      const action = {
+        type: "TANG_GIAM_SO_LUONG",
+        maSP,
+        soLuong,
+      };
+      dispatch(action);
+    },
+  };
+};
+
 //Biến đổi BaiTapGioHangReDux thành BaiTapGioHang có kết nối với redux
-export default connect(mapStateToProps)(GioHangRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(GioHangRedux);

@@ -1,22 +1,18 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore } from 'redux';
+import { baiTapDatVeReducer } from './reducers/baiTapDatVeReducer';
+import { gioHangReducer } from './reducers/gioHangReducer';
 
-const stateDefault = {
-  gioHang: [
-    {
-      maSP: 1,
-      tenSP: "iphone x",
-      gia: 1000,
-      soLuong: 1,
-      hinhAnh: "https://picsum.photos/200/200",
-    },
-  ],
-};
+
+
 
 const rootReducer = combineReducers({
-  //Nơi chứa toàn bộ state của ứng dụng
-  gioHangReducer: (state = stateDefault) => {
-    return state;
-  },
-});
+    //Nơi chứa toàn bộ state của ứng dụng
+    gioHangReducer: gioHangReducer,
+    baiTapDatVeReducer:baiTapDatVeReducer
+    // reducerA: gioHangReducer,
+    // reducerB: gioHangReducer
+
+})
+
 
 export const store = createStore(rootReducer);
